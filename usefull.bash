@@ -1,0 +1,1 @@
+GOPATH=$GOPATH:/home/juno/git/OceanDomains/OceanDomains go test -v
