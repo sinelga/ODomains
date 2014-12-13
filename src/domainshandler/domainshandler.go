@@ -46,6 +46,7 @@ func main() {
 	}
 
 
+
 	csvReaderd := csv.NewReader(csvFiled)
 	csvReaderd.TrailingComma = true
 
