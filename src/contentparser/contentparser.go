@@ -5,7 +5,19 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"regexp"
 )
+
+
+func findIP(input string) string {
+         numBlock := "(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])"
+         regexPattern := numBlock + "\\." + numBlock + "\\." + numBlock + "\\." + numBlock
+
+         regEx := regexp.MustCompile(regexPattern)
+         return regEx.FindString(input)
+ }
+
+
 
 func Parse(contents []byte) (string, [][]string){
 
@@ -29,13 +41,28 @@ func Parse(contents []byte) (string, [][]string){
 		domainname := iii["name"].(string)
 
 		zone_file := iii["zone_file"].(string)
-		startpos := strings.Index(zone_file, "IN A")
-		endpos := len(zone_file)
-		ipstring := zone_file[startpos+5 : endpos]
-		domainrecord := []string{domainname, ipstring[:strings.Index(ipstring,"\\n")]}
+//		startpos := strings.Index(zone_file, "IN A")
+//		endpos := len(zone_file)
+//		ipstring := zone_file[startpos+5 : endpos]
+//		fmt.Println(zone_file)
+		ipstring :=findIP(strings.TrimSpace(zone_file))
+		
+		fmt.Println(ipstring)
+		
+		if domainname == "k18.me" {
+			
+			fmt.Println(zone_file)
+			
+		}
+				
+		
+//		domainrecord := []string{domainname, ipstring[:strings.Index(ipstring,"\\n")]}
+		domainrecord := []string{domainname,strings.TrimSpace(ipstring)} 
 		domainrecords = append(domainrecords, domainrecord)
 
 	}
+	
+	fmt.Println("all domains ",len(domainrecords))
 
 	links := jItems["links"].(map[string]interface{})
 

@@ -2,13 +2,13 @@ package main
 
 import (
 	"changeip"
+	"dumpintocsv"
 	"encoding/csv"
 	"flag"
 	"fmt"
 	"getalldomainsv2"
 	"io"
 	"os"
-		"dumpintocsv"
 )
 
 const APP_VERSION = "0.1"
@@ -52,8 +52,6 @@ func main() {
 	for _, domainrecords := range alldomainrecords {
 
 		if domainrecords[1] == fromIp {
-
-			//			fmt.Println(domainrecords)
 
 			recordtodump := changeip.ChangeFromTo(token, domainrecords[0], domainrecords[1], "104.131.95.7")
 			//			recordtodump :=[]string{domainrecords[0],domainrecords[1],"104.131.95.7",}

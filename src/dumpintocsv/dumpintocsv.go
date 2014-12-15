@@ -8,7 +8,7 @@ import (
 
 func Dump(recordtomodify [][]string) {
 
-	file, error := os.OpenFile("output.csv", os.O_RDWR, 0666)
+	file, error := os.OpenFile("output.csv", os.O_RDWR|os.O_CREATE, 0666)
 	if error != nil {
 		panic(error)
 	}
