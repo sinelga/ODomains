@@ -4,3 +4,4 @@
 
 
 awk -F "," '{print "curl -X PUT \"https://api.digitalocean.com/v2/domains/"$1"/records/"$2"\" -d \{\"data\":\"104.131.91.85\"\} -H \"Authorization: Bearer $TOKEN\" -H \"Content-Type: application/json\""}'  output.csv >tmp.bash
+

@@ -7,7 +7,17 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"regexp"
 )
+
+func findIP(input string) string {
+         numBlock := "(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])"
+         regexPattern := numBlock + "\\." + numBlock + "\\." + numBlock + "\\." + numBlock
+
+         regEx := regexp.MustCompile(regexPattern)
+         return regEx.FindString(input)
+ }
+
 
 func GetAllD(your_client_id string, api_key string) {
 
@@ -24,7 +34,6 @@ func GetAllD(your_client_id string, api_key string) {
 			fmt.Printf("%s", err)
 			os.Exit(1)
 		}
-//		fmt.Printf("%s\n", string(contents))
 
 		var jItems map[string]interface{}
 
@@ -45,11 +54,14 @@ func GetAllD(your_client_id string, api_key string) {
 				
 				jlive_zone_file := iii["live_zone_file"].(string)
 				
-				pos :=strings.Index(jlive_zone_file,"IN A") 
-				fmt.Println(domainname,jlive_zone_file[pos:pos+20])				
-				 
+				ipstring :=findIP(strings.TrimSpace(jlive_zone_file))
 				
-			
+//				fmt.Println(domainname)
+//				fmt.Println(iii)
+//				fmt.Println(jlive_zone_file)
+
+				fmt.Println(domainname,	ipstring)			
+				 							
 			}
 			
 			
