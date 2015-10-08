@@ -11,3 +11,9 @@ type Domaincsv struct {
 	Ip string
 	
 }
+type NewDomain struct {
+	
+	Name string `json:"name"`
+	Ip string   `json:"ip_address"`
+	
+}
