@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"newdomainsV2/addnewdomain"
+	"newdomainsV2/create_new_record"
 	"os"
 	"strings"
 )
@@ -35,11 +36,6 @@ func main() {
 		token = fields[0]
 		fmt.Println(token)
 
-		//		csvFiled, err := os.Open("domains.csv")
-		//		defer csvFiled.Close()
-		//		if err != nil {
-		//			panic(err)
-		//		}
 
 	}
 
@@ -69,6 +65,8 @@ func main() {
 			domaincsv.Name = fields[2]
 			domaincsv.Ip = fields[3]
 			addnewdomain.Add(token, domaincsv)
+			create_new_record.Create(token, domaincsv)
+			
 
 		}
 

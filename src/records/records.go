@@ -27,18 +27,6 @@ func AddCname(your_client_id string, api_key string, domainid int,name string, h
 		}
 		fmt.Printf("%s\n", string(contents))
 
-//		var data jsonresult
-//		err = json.Unmarshal(contents, &data)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		fmt.Printf("Results: %v\n", data.Status)
-//		
-//		if data.Status=="OK" {
-//		
-//		
-//		}
-				
 
 	}
 
