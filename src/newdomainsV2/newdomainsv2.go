@@ -8,6 +8,7 @@ import (
 	"io"
 	"newdomainsV2/addnewdomain"
 	"newdomainsV2/create_new_record"
+	"newdomainsV2/add_record_infile"
 	"os"
 	"strings"
 )
@@ -66,6 +67,7 @@ func main() {
 			domaincsv.Ip = fields[3]
 			addnewdomain.Add(token, domaincsv)
 			create_new_record.Create(token, domaincsv)
+			add_record_infile.Add(domaincsv)
 			
 
 		}
