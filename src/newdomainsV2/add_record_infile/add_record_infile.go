@@ -12,7 +12,7 @@ func Add(domaincsv domains.Domaincsv) {
      }
      defer file.Close()
      
-     str :="\nbin/contents_feeder_redis --site="+domaincsv.Name+" && sleep 90 && bin/contents_feeder_redis --site="+domaincsv.Name+" && sleep 90 && bin/contents_feeder_redis --site="+domaincsv.Name
+     str :="\nbin/contents_feeder_redis --site="+domaincsv.Name+" && sleep 90 && bin/contents_feeder_redis --site=www."+domaincsv.Name+" && sleep 90 && bin/contents_feeder_redis --site=chat."+domaincsv.Name+"\n"
 
      if _, err = file.WriteString(str); err != nil {
       panic(err)
